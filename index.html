@@ -6,35 +6,42 @@
 		<script src="TeacherApp.js"></script>
 	</head>
 	<body ng-controller="ListController">
-		<form name="newStudent"class="form-inline">
-			Enter a new student to add:(Note: Must enter name. Grade must be between 0 & 100.)<br />
-			<div class="form-group">
-				<label>Name</label>
-				<input type="text" class ="form-control" ng-model="newStudentName" placeholder="name" required>
-			</div>
-			<div class="form-group">
-				<label>Grade</label>
-				<input type="number" class ="form-control" ng-model="newStudentGrade" >
-			</div>
-			<button ng-click="addStudent()" class="btn btn-default" ng-disabled="newStudent.$invalid">Add Student</button>
-		</form>
-		<table class="table table-striped">
-			<thead>
-				<th>Name</th>
-				<th>Grade</th>
-				<th></th>
-				<th></th>
-			</thead>
-			<tr ng-repeat="student in studentList">
-				<td>
-					<div ng-hide="editing[$index]">{{student.name}}</div>
-					<div ng-show="editing[$index]"><input type="text" ng-model="student.name" ng-blur="doneEditing($index)" ng-keypress="enterPressed($index, $event)"/></div>
-				</td>
-				<td><div ng-hide="editing[$index]">{{student.grade}}</div>
-					<div ng-show="editing[$index]"><input type="number" min="0" max="100" ng-model="student.grade" ng-blur="doneEditing($index)" ng-keypress="enterPressed($index, $event)"/></div></td>
-				<td><button ng-click="edit(student, $index)" class="btn btn-primary">Edit</button></td>
-				<td><button ng-click="delete($index)" class="btn btn-danger">Delete</button></td>
-			</tr>	
-		</table>	
+	<div class="row">
+		<div class="col-md-5">
+			<form name="newStudent"class="form-inline">
+				Enter a new student to add:(Note: Must enter name. Grade must be between 0 & 100.)<br />
+				<div class="form-group">
+					<label>Name</label>
+					<input type="text" class ="form-control" ng-model="newStudentName" placeholder="name" required>
+				</div>
+				<div class="form-group">
+					<label>Grade</label>
+					<input type="number" class ="form-control" ng-model="newStudentGrade" >
+				</div>
+				<button ng-click="addStudent()" class="btn btn-default" ng-disabled="newStudent.$invalid">Add Student</button>
+			</form>
+			<table class="table table-striped">
+				<thead>
+					<th>Name</th>
+					<th>Grade</th>
+					<th></th>
+					<th></th>
+				</thead>
+				<tr ng-repeat="student in studentList">
+					<td>
+						<div ng-hide="editing[$index]">{{student.name}}</div>
+						<div ng-show="editing[$index]"><input type="text" ng-model="student.name" ng-blur="doneEditing($index)" ng-keypress="enterPressed($index, $event)"/></div>
+					</td>
+					<td><div ng-hide="editing[$index]">{{student.grade}}</div>
+						<div ng-show="editing[$index]"><input type="number" min="0" max="100" ng-model="student.grade" ng-blur="doneEditing($index)" ng-keypress="enterPressed($index, $event)"/></div></td>
+					<td><button ng-click="edit(student, $index)" class="btn btn-primary">Edit</button></td>
+					<td><button ng-click="delete($index)" class="btn btn-danger">Delete</button></td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-md-5">
+
+		</div>
+	</div>
 	</body>
 </html>
