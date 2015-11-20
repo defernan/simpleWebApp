@@ -1,11 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="teacherApp">
 	<head>
-		<script src="angular.min.js"></script>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
 		<script src="TeacherApp.js"></script>
 	</head>
-	<body ng-app= >
-
-
+	<body ng-controller="ListController">
+		<table class="table table-striped">
+			<thead>
+				<th>Name</th>
+				<th>Grade</th>
+			</thead>
+			<tr ng-repeat="student in studentList">
+				<td>
+					<div ng-hide="editing[$index]">{{student.name}}</div>
+					<div ng-show="editing[$index]"><input type="text" ng-model="student.name" ng-blur="done($index)" ng-keypress="enterPressed($index, $event)"/></div>
+				</td>
+				<td>
+					<div ng-hide="editing[$index]">{{student.grade}}<div>
+					<div ng-show="editing[$index]"><input type="text" ng-model="student.grade" ng-blur="done($index)" ng-keypress="enterPressed($index, $event)"/></div>
+				</td>	
+				<td><button ng-click="edit(student, $index)">Edit</button></td>
+				<td><button ng-click="delete($index)">Delete</button></td>
+			</tr>	
+		</table>	
 	</body>
 </html>
