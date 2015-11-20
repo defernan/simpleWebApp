@@ -33,6 +33,8 @@ teacherApp.controller('ListController', ['$scope', function($scope){
 			name: $scope.newStudentName;
 			grade: $scope.newStudentGrade;
 		});
+		$scope.newStudentName = "";
+		$scope.newStudentGrade = 0;
 	}
 	//update helpers
 	$scope.edit = function(student, index){
