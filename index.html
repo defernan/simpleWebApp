@@ -10,16 +10,16 @@
 			<thead>
 				<th>Name</th>
 				<th>Grade</th>
+				<th></th>
+				<th></th>
 			</thead>
 			<tr ng-repeat="student in studentList">
 				<td>
 					<div ng-hide="editing[$index]">{{student.name}}</div>
-					<div ng-show="editing[$index]"><input type="text" ng-model="student.name" ng-blur="done($index)" ng-keypress="enterPressed($index, $event)"/></div>
+					<div ng-show="editing[$index]"><input type="text" ng-model="student.name" ng-blur="doneEditing($index)" ng-keypress="enterPressed($index, $event)"/></div>
 				</td>
-				<td>
-					<div ng-hide="editing[$index]">{{student.grade}}<div>
-					<div ng-show="editing[$index]"><input type="text" ng-model="student.grade" ng-blur="done($index)" ng-keypress="enterPressed($index, $event)"/></div>
-				</td>	
+				<td><div ng-hide="editing[$index]">{{student.grade}}</div>
+					<div ng-show="editing[$index]"><input type="number" min="0" max="100" ng-model="student.grade" ng-blur="doneEditing($index)" ng-keypress="enterPressed($index, $event)"/></div></td>
 				<td><button ng-click="edit(student, $index)">Edit</button></td>
 				<td><button ng-click="delete($index)">Delete</button></td>
 			</tr>	
