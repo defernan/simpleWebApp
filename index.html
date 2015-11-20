@@ -6,12 +6,18 @@
 		<script src="TeacherApp.js"></script>
 	</head>
 	<body ng-controller="ListController">
-		<form class="form-inline" ng-submit:"addStudent()">
-			Enter a new student to add:
-			<!-- <div class="form-group">
-				<lab
-			</div> -->
-		</form>	
+		<form name="newStudent"class="form-inline">
+			Enter a new student to add:(Note: Must enter name. Grade must be between 0 & 100.)<br />
+			<div class="form-group">
+				<label>Name</label>
+				<input type="text" ng-model="newStudentName" placeholder="name" required>
+			</div>
+			<div class="form-group">
+				<label>Grade</label>
+				<input type="number" ng-model="newStudentGrade" >
+			</div>
+			<button ng-click="addStudent()" ng-disabled="newStudent.$invalid">Add Student</button>
+		</form>
 		<table class="table table-striped">
 			<thead>
 				<th>Name</th>

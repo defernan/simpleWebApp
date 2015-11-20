@@ -27,11 +27,18 @@ teacherApp.controller('ListController', ['$scope', function($scope){
 	$scope.avg = function(){
 
 	};
+	//helpers
+	$scope.notValidStudent = function(){
+		if($scope.newStudentName == "" || $scope.newStudentGrade > 100 || $scope.newStudentGrade < 0){
+			return true;
+		}
+		return false;
+	};
 	//insert helpers
 	$scope.addStudent = function(){
 		$scope.studentList.push({
-			name: $scope.newStudentName;
-			grade: $scope.newStudentGrade;
+			name: $scope.newStudentName,
+			grade: $scope.newStudentGrade
 		});
 		$scope.newStudentName = "";
 		$scope.newStudentGrade = 0;
