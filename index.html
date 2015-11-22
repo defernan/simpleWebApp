@@ -3,11 +3,12 @@
 	<head>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+	    <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
 		<script src="TeacherApp.js"></script>
 	</head>
 	<body ng-controller="ListController">
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-md-7">
 			<form name="newStudent"class="form-inline">
 				Enter a new student to add:(Note: Must enter name. Grade must be between 0 & 100.)<br />
 				<div class="form-group">
@@ -20,14 +21,14 @@
 				</div>
 				<button ng-click="addStudent()" class="btn btn-default" ng-disabled="newStudent.$invalid">Add Student</button>
 			</form>
-			<table class="table table-striped">
+			<table class="table">
 				<thead>
 					<th>Name</th>
 					<th>Grade</th>
 					<th></th>
 					<th></th>
 				</thead>
-				<tr ng-repeat="student in studentList">
+				<tr ng-repeat="student in studentList" ng-class = "{'danger': student.grade < 65}">
 					<td>
 						<div ng-hide="editing[$index]">{{student.name}}</div>
 						<div ng-show="editing[$index]"><input type="text" ng-model="student.name" ng-blur="doneEditing($index)" ng-keypress="enterPressed($index, $event)"/></div>
@@ -39,8 +40,10 @@
 				</tr>
 			</table>
 		</div>
-		<div class="col-md-5">
-
+		<div class="col-md-4">
+				<div class="well">Min: <p ng-bind="min()"></p></div>
+				<div class="well">Max: <p ng-bind="max()"></p></div>
+				<div class="well">Avg: <p ng-bind="avg()"></p></div>
 		</div>
 	</div>
 	</body>

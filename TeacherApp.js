@@ -1,7 +1,7 @@
 
-var teacherApp = angular.module('teacherApp', []);
+var teacherApp = angular.module('teacherApp', ['ngStorage']);
 
-teacherApp.controller('ListController', ['$scope', function($scope){
+teacherApp.controller('ListController', ['$scope', '$localStorage', function($scope, $localStorage){
 
 
 	$scope.student = {name: 'willis', grade: 45};
@@ -17,16 +17,50 @@ teacherApp.controller('ListController', ['$scope', function($scope){
 	$scope.newStudentName = "";
 	//number calculations
 	$scope.min = function(){
-
+		if($scope.studentList.length > 0){
+			min = $scope.studentList[0].grade;
+			for(var i = 0; i < $scope.studentList.length; i++){
+				if($scope.studentList[i].grade < min){
+					min = $scope.studentList[i].grade;
+				}	
+			}
+		}
+		return min;
 	};
 	
 	$scope.max = function(){
 
+		if($scope.studentList.length > 0){
+			max = $scope.studentList[0].grade;
+			for( var i = 0; i < $scope.studentList.length; i++){
+				if($scope.studentList[i].grade > max){
+					max = $scope.studentList[i].grade;
+				}	
+			}
+		}
+		return max;
 	};
 	
 	$scope.avg = function(){
 
+		if($scope.studentList.length > 0){
+			sum = 0;
+			count = 0;
+			for(var i = 0; i < $scope.studentList.length; i++){
+				sum += $scope.studentList[i].grade;
+				count += 1;	
+			}
+		}
+		return sum/count;
 	};
+	//indicates failing students
+	$scope.failingStudent - function(student){
+		if(student.grade < 65){
+			return "danger";
+		}
+		return "";
+	}
+
 	//helpers
 	$scope.notValidStudent = function(){
 		if($scope.newStudentName == "" || $scope.newStudentGrade > 100 || $scope.newStudentGrade < 0){
