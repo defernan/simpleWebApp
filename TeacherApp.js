@@ -7,7 +7,8 @@ teacherApp.controller('ListController', ['$scope', '$localStorage', function($sc
 	$scope.student = {name: 'willis', grade: 45};
 	$scope.student2 = {name: 'willis', grade: 45};
 	$scope.student3 = {name: 'willis', grade: 45};
-	$scope.studentList= [$scope.student, $scope.student2, $scope.student3];
+	$scope.$storage= $localStorage.$default({list: [$scope.student, $scope.student2, $scope.student3]});
+	$scope.studentList = $scope.$storage.list;
 	$scope.studentCopy = {};
 	$scope.editing = {};
 	$scope.editing[0] = false;
