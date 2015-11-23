@@ -4,9 +4,9 @@ var teacherApp = angular.module('teacherApp', ['ngStorage']);
 teacherApp.controller('ListController', ['$scope', '$localStorage', function($scope, $localStorage){
 
 
-	$scope.student = {name: 'willis', grade: 45};
-	$scope.student2 = {name: 'willis', grade: 45};
-	$scope.student3 = {name: 'willis', grade: 45};
+	$scope.student = {name: 'Tim Brady', grade: 45};
+	$scope.student2 = {name: 'Aaron Rodgers', grade: 90};
+	$scope.student3 = {name: 'Cam Newton', grade: 95};
 	$scope.$storage= $localStorage.$default({list: [$scope.student, $scope.student2, $scope.student3]});
 	$scope.studentList = $scope.$storage.list;
 	$scope.studentCopy = {};
@@ -80,7 +80,6 @@ teacherApp.controller('ListController', ['$scope', '$localStorage', function($sc
 	}
 	//update helpers
 	$scope.edit = function(student, index){
-		console.log(index);
 		$scope.editing[index] = true;
 		$scope.studentCopy = angular.copy(student)
 	};
@@ -94,7 +93,6 @@ teacherApp.controller('ListController', ['$scope', '$localStorage', function($sc
 	}
 	//delete helpers
 	$scope.delete = function(index){
-		console.log(index);
 		$scope.studentList.splice(index,1);
 	};
 	//try with directives
